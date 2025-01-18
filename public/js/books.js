@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const addBookForm = document.getElementById('addBookForm');
     const booksTableBody = document.getElementById('booksTableBody');
 
-    // Fetch and display books
     async function fetchBooks() {
         try {
             const response = await fetch('/books');
@@ -19,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 </tr>
             `).join('');
 
-            // Add event listeners for edit and delete buttons
+
             document.querySelectorAll('.edit-book').forEach(button => {
                 button.addEventListener('click', () => editBook(button.dataset.id));
             });
@@ -32,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Add new book
+
     addBookForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         const title = document.getElementById('bookTitle').value;
@@ -51,14 +50,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Edit book
+
     async function editBook(bookId) {
         try {
             // Fetch current book details
             const response = await fetch(`/books/${bookId}`);
             const book = await response.json();
 
-            // Prompt for new details (you might want to replace this with a modal in a real app)
             const newTitle = prompt('Enter new book title:', book.title);
             const newAuthor = prompt('Enter new book author:', book.author);
 
@@ -78,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Delete book
+
     async function deleteBook(bookId) {
         if (confirm('Are you sure you want to delete this book?')) {
             try {
@@ -92,6 +90,5 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Initial fetch
     fetchBooks();
 });
