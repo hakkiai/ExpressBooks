@@ -5,7 +5,6 @@ exports.borrowBook = async (req, res) => {
     try {
         const { studentId, bookId } = req.body;
         
-        // Check if book is already borrowed
         const existingBorrow = await Borrow.findOne({ 
             book: bookId, 
             returnedAt: null 
@@ -14,14 +13,12 @@ exports.borrowBook = async (req, res) => {
             return res.status(400).json({ message: 'Book is already borrowed' });
         }
 
-        // Create borrow record
         const borrow = new Borrow({ 
             student: studentId, 
             book: bookId 
         });
         await borrow.save();
 
-        // Increment book's borrow count
         await Book.findByIdAndUpdate(bookId, { 
             $inc: { borrowCount: 1 } 
         });
