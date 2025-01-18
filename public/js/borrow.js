@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const studentSelect = document.getElementById('studentSelect');
     const bookSelect = document.getElementById('bookSelect');
 
-    // Fetch and populate students dropdown
+
     async function fetchStudents() {
         try {
             const response = await fetch('/students');
@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Fetch and populate books dropdown
+
     async function fetchBooks() {
         try {
             const response = await fetch('/books');
@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Fetch and display borrowing records
+
     async function fetchBorrowRecords() {
         try {
             const response = await fetch('/borrow');
@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Borrow a book
+
     borrowBookForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         const studentId = studentSelect.value;
@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Return a book
+
     async function returnBook(borrowId) {
         if (confirm('Are you sure you want to return this book?')) {
             try {
